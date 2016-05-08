@@ -1,0 +1,44 @@
+创建存储过程：
+*********************************
+DELIMITER $$
+
+USE `xxx`$$
+
+DROP PROCEDURE IF EXISTS `ProTest01`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ProTest01`(IN s_in INT,OUT s_out INT,INOUT s_inout INT)
+BEGIN
+	SELECT COUNT(*) INTO s_out FROM t_user;
+	SELECT COUNT(*) INTO s_in FROM t_user;
+	SELECT COUNT(*) INTO s_inout FROM t_user;
+END$$
+
+DELIMITER ;
+*********************************
+调用：
+*********************************
+SET @p_in=0,@p_out=0,@p_inout=0;
+CALL ProTest01(@p_in,@p_out,@p_inout);
+SELECT @p_in,@p_out,@p_inout;
+*********************************
+关键字：
+	IN		-->	传入的参数，可在过程内部进行操作，不会影响过程外部的值
+	OUT		-->	返回的参数(输出的参数)，无法向过程内部传值，会改变外部的值
+	INOUT	-->	传入传出参数，可以获取传入的参数，修改后再返回给外部
+	
+
+查询数据库中的存储过程
+
+	查询所有存储过程的名称
+	SELECT NAME FROM mysql.proc WHERE db='xxx';
+	SELECT routine_name FROM information_schema.routines WHERE routine_schema='xxx';
+	SHOW PROCEDURE STATUS WHERE db='xxx';
+	
+	查看存储过程详细
+	SHOW CREATE PROCEDURE xxx.GreetWorld;
+
+
+
+
+
+

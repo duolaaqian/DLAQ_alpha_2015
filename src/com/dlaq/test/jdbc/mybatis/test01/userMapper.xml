@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dlaq.test.jdbc.mybatis.test01.userMapper">
+	
+	<select id="getUser" parameterType="String" resultType="com.dlaq.test.jdbc.mybatis.test01.TUser">
+		select * from oa_basic_ug_user where id_=#{a} and id_=#{ab}
+	</select>
+	<select id="getAllUser" resultType="com.dlaq.test.jdbc.mybatis.basic.TUser">
+		select * from oa_basic_ug_user
+	</select>
+	
+</mapper>
